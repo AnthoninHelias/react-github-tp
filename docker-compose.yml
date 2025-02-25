@@ -10,3 +10,21 @@ services:
     environment:
       - NODE_ENV=development
     command: npm start
+
+  db:
+    image: postgres
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_DB: qcmdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5435:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "9000:8080"
