@@ -1,9 +1,7 @@
-name: Generate and deploy docker container 
+name: Deploy to EC2 with Docker
+
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -15,12 +13,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Set up SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
-      - name: Build Docker image
-        run: docker build -t aws_test:latest .
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          cd ${{ secrets.WORK_DIR }}
+          git pull origin ${{ secrets.MAIN_BRANCH }}
 
-      - name: Run Docker Compose
-        run: docker-compose up -d
-r
+          # Arrêter et supprimer les anciens conteneurs
+          docker-compose down
+
+          # Construire et démarrer les nouveaux conteneurs
+          docker-compose build
+          docker-compose up -d
+          EOF
+
+      - name: Cleanup
+        run: rm -rf ~/.ssh
