@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   app:
     build: .
-    container_name: mon_application
+    container_name: aws_test
     ports:
       - "3000:3000"
     volumes:
