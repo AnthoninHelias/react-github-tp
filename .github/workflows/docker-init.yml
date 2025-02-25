@@ -17,9 +17,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
-        run: |
-          docker build -t aws_test:latest .
+        run: docker build -t aws_test:latest .
 
       - name: Run Docker Compose
-        run: |
-          docker-compose up -d
+        run: docker-compose up -d
