@@ -1,7 +1,9 @@
 name: Generate and deploy docker container 
 on:
   push:
-  merge:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
