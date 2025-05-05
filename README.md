@@ -80,6 +80,27 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 
+Le Dockerfile définit l’environnement d’exécution de l’application Node.js dans un conteneur Docker léger basé sur Alpine Linux. Voici les étapes principales :
+
+Base Image : Utilise l'image ``` node:18-alpine ``` , une version allégée de Node.js adaptée pour la production.
+
+Répertoire de travail : Définit ``` /app ``` comme répertoire de travail à l’intérieur du conteneur.
+
+Installation des dépendances :
+
+Copie les fichiers ``` package.json ``` et ``` package-lock.json ```.
+
+Exécute ``` npm install  ```pour installer les dépendances de production.
+
+Ajout du code source : Copie tous les fichiers de l’application dans le conteneur.
+
+Exposition du port : Le port ``` 3000 ``` est exposé pour accéder à l’application.
+
+Commande de démarrage : Lance l’application avec ``` npm start ```.
+
+Ce Dockerfile permet de créer une image légère et optimisée, idéale pour un déploiement automatisé sur un VPS via GitHub Actions.
+
+
 ### `docker-compose.yml`
 
 ```yaml
@@ -103,7 +124,7 @@ services:
 docker ps
 ```
 3. Accédez à votre application sur :  
-[http://<ip-public-ec2>:3000](http://<ip-public-ec2>:3000)
+http://<ip-public-ec2>:3000
 
 ---
 
