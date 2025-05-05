@@ -194,8 +194,8 @@ Redirige le port ```5435``` de l’hôte vers le ```5432``` du conteneur Postgre
 
 ports:
 
-Redirige le port 8080 du conteneur vers le port 9000 de l’hôte, accessible via :
-http://<IP>:9000
+Redirige le port ``` 8080 ``` du conteneur vers le port ``` 9000 ``` de l’hôte, accessible via :
+``` http://<IP>:9000 ```
 
 Le fichier docker-compose.yml permet de gérer facilement le déploiement de l’application via Docker. Voici une explication des éléments utilisés :
 
@@ -209,7 +209,7 @@ Ici, un seul service nommé web.
 
 ``` ports: ```
 
-Redirige le port ``` 3000 ``` du conteneur vers le port ``` 3000 ``` de la machine hôte (le VPS), permettant d’accéder à l’application via http://<IP>:3000.
+Redirige le port ``` 3000 ``` du conteneur vers le port ``` 3000 ``` de la machine hôte (le VPS), permettant d’accéder à l’application via ``` http://<IP>:3000 ```.
 
 environment:
 
