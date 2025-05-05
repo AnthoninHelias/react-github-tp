@@ -201,7 +201,7 @@ Le fichier docker-compose.yml permet de gérer facilement le déploiement de l�
 
 ``` version: '3' ``` : Spécifie la version du format de fichier Docker Compose (ici, v3, compatible avec la majorité des versions de Docker).
 
-``` services: : Définit les services à exécuter dans les conteneurs.
+``` services: ``` : Définit les services à exécuter dans les conteneurs.
 Ici, un seul service nommé web.
 
 🔹 Service web
